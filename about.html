@@ -554,7 +554,7 @@
                 width: 350px !important;
             }
 
-            #sec{
+            #sec {
                 height: 1000px;
             }
         }
@@ -646,7 +646,7 @@
                 margin-top: 0px !important;
             }
 
-            #para{
+            #para {
                 font-size: 20px;
             }
 
@@ -658,14 +658,11 @@
 
     <nav class="navbar navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand text-white" href="#"><img src="logo.png" id="logo" height="60" alt=""></a>
+            <a class="navbar-brand text-white" href="index.html"><img src="logo2.png" id="logo" height="60" alt=""></a>
             <div>
                 <button class="btn btn-success me-3" id="donate" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasDonate" aria-controls="offcanvasDonate">
-                    <i class="fa-solid fa-hand-holding-heart"></i> <span id="donateText">Donate Now</span>
-                </button>
-
-                <button class="btn btn-success me-3" id="userAccount" type="button" onclick="redirectToLogin()">
+                    data-bs-target="#offcanvasDonate" aria-controls="offcanvasDonate">Donate Now</button>
+                <button class="btn btn-light me-3" id="userAccount" type="button" onclick="redirectToLogin()">
                     <i class="fa-solid fa-user"></i> <span id="accountText">Sign Up/Login</span>
                 </button>
                 <button class="btn" id="menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
@@ -709,14 +706,31 @@
                                 </li>
                             </ul>
                         </li>
-                        <a class="nav-link" href="#">Get Involved</a>
-                        <a class="nav-link" href="#">Events</a>
-                        <a class="nav-link" href="#">Media</a>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#pages1" aria-expanded="false" aria-controls="pages">
+                                Get Involved
+                            </a>
+                            <ul id="pages1" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link" onclick="handleDonate('food')">Donate Food</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="serviceagencyform.html" class="sidebar-link">Service Agencies</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="volunteerRegister.html" class="sidebar-link">Volunteer</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="supportus.html" class="sidebar-link">Our Supporters</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <a class="nav-link" href="gallery.html">Gallery</a>
                         <a class="nav-link" href="riderLoginForm.html">Rider Registration</a>
                         <a class="nav-link" href="volunteerRegister.html">Volunteer Registration</a>
-                        <a class="nav-link" href="#">Resource Center</a>
-                        <a class="nav-link" href="#">Contact & FAQ</a>
-                        <a class="nav-link mb-5" href="#">IDEA and Anti-Racism Commitments</a>
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                        <a class="nav-link" href="faqs.html">FAQs</a>
 
                         <form class="p-3" id="form">
                             <h3 class="text-center my-5">Join our newsletter</h3>
@@ -853,7 +867,7 @@
                 <img src="our history.png" class="img-fluid mt-2 " alt="...">
                 <div class="container mt-5">
                     <p><strong class="mt-5" style="margin-right: 65%;">From our founder, Lourdes Juan:</strong></p>
-                    <p id="para"> 
+                    <p id="para">
                         “Back in 2012, I was asked by a cousin to help pick up excess bread from a local bakery that
                         was
                         going to be thrown out. The bakery had a policy to donate food at the end of their day
