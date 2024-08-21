@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS user ID
+    </script>
+    <style>
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
+            display: block;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <hr style="color: #4CAF50; margin-top: 100px;">
+        <div class="row my-5">
+            <div class="col-lg-6 mt-5 me-4" data-aos="fade-right">
+                <h1 class=" my-5" id="welcome5">Join Our Newsletter</h1>
+                <p class="my-5 fs-5" id="p">Want to know more? Sign up to
+                    receive our monthly newsletter and other updates, and see what’s happening at Leftovers and in the
+                    world of food rescue!</p>
+            </div>
+            <div class="col-lg-5 ms-5" data-aos="fade-left">
+                <form class="p-5" id="form">
+                    <hr style="color: #4CAF50; width: 200px; margin: auto;">
+                    <h3 class="text-center mb-5 mt-3" id="p5">Join our newsletter</h3>
+
+                    <input class="form-control" id="firstName" type="text" name="firstName" placeholder="First Name">
+                    <span class="error-message" id="firstNameError"></span>
+
+                    <input class="form-control mt-4" id="lastName" type="text" name="lastName" placeholder="Last Name">
+                    <span class="error-message" id="lastNameError"></span>
+
+                    <input class="form-control mt-4" id="email" type="email" name="email" placeholder="Email">
+                    <span class="error-message" id="emailError"></span>
+
+                    <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" value="" id="agreementCheckbox">
+                        <label class="form-check-label" for="agreementCheckbox">
+                            I agree to receive marketing messages via email.
+                        </label>
+                    </div>
+                    <span class="error-message" id="checkboxError"></span>
+
+                    <button type="submit" class="btn btn-primary mt-5">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "e8bBkBbTenhcxqT19",
+            });
+        })();
+    </script>
+
+    <script>
+        // Function to validate first name
+        function validateFirstName() {
+            const firstName = document.getElementById('firstName').value;
+            const firstNameError = document.getElementById('firstNameError');
+            const namePattern = /^[A-Za-z\s]+$/;
+
+            if (firstName === '') {
+                firstNameError.textContent = 'Please fill out this field.';
+            } else if (!namePattern.test(firstName) || firstName.length < 3 || firstName.length > 12) {
+                firstNameError.textContent = 'First name must be between 3 and 12 characters and contain only letters.';
+            } else {
+                firstNameError.textContent = '';
+            }
+        }
+
+        // Function to validate last name
+        function validateLastName() {
+            const lastName = document.getElementById('lastName').value;
+            const lastNameError = document.getElementById('lastNameError');
+            const namePattern = /^[A-Za-z\s]+$/;
+
+            if (lastName === '') {
+                lastNameError.textContent = 'Please fill out this field.';
+            } else if (!namePattern.test(lastName) || lastName.length < 3 || lastName.length > 12) {
+                lastNameError.textContent = 'Last name must be between 3 and 12 characters and contain only letters.';
+            } else {
+                lastNameError.textContent = '';
+            }
+        }
+
+        // Function to validate email
+        function validateEmail() {
+            const email = document.getElementById('email').value;
+            const emailError = document.getElementById('emailError');
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (email === '') {
+                emailError.textContent = 'Please fill out this field.';
+            } else if (!emailPattern.test(email)) {
+                emailError.textContent = 'Please enter a valid email address.';
+            } else {
+                emailError.textContent = '';
+            }
+        }
+
+        // Function to validate checkbox
+        function validateCheckbox() {
+            const checkbox = document.getElementById('agreementCheckbox').checked;
+            const checkboxError = document.getElementById('checkboxError');
+
+            if (!checkbox) {
+                checkboxError.textContent = 'You must agree to receive marketing messages.';
+            } else {
+                checkboxError.textContent = '';
+            }
+        }
+
+        // Function to validate all fields
+        function validateAllFields() {
+            validateFirstName();
+            validateLastName();
+            validateEmail();
+            validateCheckbox();
+        }
+
+        // Add event listeners to trigger validation on input for all fields
+        document.getElementById('firstName').addEventListener('input', validateAllFields);
+        document.getElementById('lastName').addEventListener('input', validateAllFields);
+        document.getElementById('email').addEventListener('input', validateAllFields);
+        document.getElementById('agreementCheckbox').addEventListener('change', validateAllFields);
+
+        // Validate all fields on form submission
+        document.getElementById('form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            validateAllFields();
+
+            // Additional checks to ensure form submission only happens when all fields are valid
+            const isFirstNameValid = document.getElementById('firstNameError').textContent === '';
+            const isLastNameValid = document.getElementById('lastNameError').textContent === '';
+            const isEmailValid = document.getElementById('emailError').textContent === '';
+            const isCheckboxValid = document.getElementById('checkboxError').textContent === '';
+
+            if (isFirstNameValid && isLastNameValid && isEmailValid && isCheckboxValid) {
+                // Prepare the data to send
+                const templateParams = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    agreement: document.getElementById('agreementCheckbox').checked ? "Yes" : "No"
+                };
+
+                // Send the email using EmailJS
+                emailjs.send('service_x9hav6r', 'template_ezkt2mm', templateParams)
+                    .then(function (response) {
+                        alert('Form submitted successfully!');
+
+                        // Clear all input fields after successful submission
+                        document.getElementById('form').reset();
+
+                        // Optionally, clear any error messages if needed
+                        document.getElementById('firstNameError').textContent = '';
+                        document.getElementById('lastNameError').textContent = '';
+                        document.getElementById('emailError').textContent = '';
+                        document.getElementById('checkboxError').textContent = '';
+
+                    }, function (error) {
+                        alert('Failed to send the form. Please try again later.');
+                        console.log('FAILED...', error);
+                    });
+            }
+        });
+
+    </script>
+
+
+
+</body>
+
+</html>
